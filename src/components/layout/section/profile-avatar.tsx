@@ -1,12 +1,9 @@
 import React from "react";
-
 import { useUser } from "@/store/user";
-import { useNavigate } from "react-router-dom";
 import LazyImage from "@/components/ui/LazyImage";
 
 const ProfileAvatar: React.FC = () => {
-	const { user, removeUser } = useUser();
-	const navigate = useNavigate();
+	const { user } = useUser();
 
 	if (!user) {
 		return null;

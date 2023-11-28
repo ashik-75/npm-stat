@@ -1,9 +1,4 @@
-import {
-	DefaultOptions,
-	QueryClient,
-	UseMutationOptions,
-	UseQueryOptions,
-} from "@tanstack/react-query";
+import { DefaultOptions, QueryClient } from "@tanstack/react-query";
 
 const queryConfig: DefaultOptions = {
 	queries: {
@@ -15,18 +10,3 @@ const queryConfig: DefaultOptions = {
 export const queryClient = new QueryClient({
 	defaultOptions: queryConfig,
 });
-
-export type ExtractFnReturnType<FnType extends (...args: any) => any> = Awaited<
-	ReturnType<FnType>
->;
-export type MutationConfig<MutationFnType extends (...args: any) => any> =
-	UseMutationOptions<
-		ExtractFnReturnType<MutationFnType>,
-		Error,
-		Parameters<MutationFnType>[0]
-	>;
-
-export type QueryConfig<QueryFnType extends (...args: any) => any> = Omit<
-	UseQueryOptions<ExtractFnReturnType<QueryFnType>>,
-	"queryKey" | "queryFn"
->;

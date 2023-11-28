@@ -6,9 +6,7 @@ import { useMovies } from "@/features/movie/api/movies";
 
 const SimilarMovies: React.FC = () => {
 	const { movieId } = useParams();
-	const { data, isLoading } = useMovies({
-		endpoint: `movie/${movieId}/similar`,
-	});
+	const { data, isLoading } = useMovies(`movie/${movieId}/similar`);
 
 	return (
 		<ScrollList

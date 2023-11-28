@@ -1,40 +1,39 @@
 import { ApiResponse, People, Person } from "@/features/movie/types";
 import { client } from "@/utils/api-client";
-import { QueryConfig } from "@/utils/react-query";
-import { baseQuery, baseInfiniteQuery } from "./base";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-const getPeopleList = (endpoint: string): Promise<ApiResponse<People>> => {
-	return client(endpoint);
+const fetchPersonList = (
+	endpoint: string | undefined
+): Promise<ApiResponse<People>> => {
+	return endpoint === undefined
+		? Promise.reject(new Error("Something went wrong"))
+		: client(endpoint);
 };
 
-interface QueryFnType {
-	(): ReturnType<typeof getPeopleList>;
-}
-
-interface UseGetPeopleLisOptions {
-	endpoint: string;
-	config?: QueryConfig<QueryFnType>;
-}
-
-export const useGetPeopleList = ({ endpoint }: UseGetPeopleLisOptions) => {
-	return baseInfiniteQuery(["people", endpoint], (page) =>
-		getPeopleList(`${endpoint}?page=${page}`)
-	);
+export const useGetPersonist = (endpoint: string | undefined) => {
+	return useInfiniteQuery({
+		queryKey: ["person-list", endpoint],
+		queryFn: ({ pageParam }) => {
+			return fetchPersonList(`${endpoint}?page=${pageParam}`);
+		},
+		getNextPageParam: (lastPage) => {
+			return lastPage.total_pages > lastPage.page ? lastPage.page + 1 : null;
+		},
+		initialPageParam: 1,
+		enabled: Boolean(endpoint),
+	});
 };
 
-const getPeople = (endpoint: string): Promise<Person> => {
-	return client(endpoint);
+const fetchPerson = (endpoint: string | undefined): Promise<Person> => {
+	return endpoint === undefined
+		? Promise.reject(new Error("Invalid Person Id"))
+		: client(endpoint);
 };
 
-interface GetPeopleQueryFnType {
-	(): ReturnType<typeof getPeople>;
-}
-
-interface UseGetPeopleOptions {
-	endpoint: string;
-	config?: QueryConfig<GetPeopleQueryFnType>;
-}
-
-export const useGetPeople = ({ endpoint }: UseGetPeopleOptions) => {
-	return baseQuery(["person", endpoint], () => getPeople(endpoint));
+export const useGetPeople = (personId: string | undefined) => {
+	return useQuery({
+		queryKey: ["person", personId],
+		queryFn: () => fetchPerson(personId),
+		enabled: Boolean(personId),
+	});
 };

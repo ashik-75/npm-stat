@@ -7,7 +7,6 @@ import NotFound from "@/features/misc/routes/not-found";
 import Account from "@/features/auth/routes/account";
 import { lazyImport } from "@/utils/lazy-import";
 import { useGetImagesPath } from "@/utils/hooks";
-import Footer from "@/components/layout/footer";
 
 interface ErrorFallbackProps {
 	error: Error;

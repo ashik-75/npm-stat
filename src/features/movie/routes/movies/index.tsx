@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import CardList from "@/components/list/card-list";
 import MovieComponent from "@/features/movie/components/movie-comp";
@@ -8,49 +8,36 @@ import Categories from "../../components/categories";
 import { categories } from "./data";
 import Spinner from "@/components/ui/Spinner";
 
-const categoryEndpoints: Record<string, string> = {
-	"popular-movies": "movie/popular",
-	"trending-movies": "trending/movie/week",
-	upcoming: "movie/upcoming",
-};
-
 export const Movies: React.FC = () => {
-	const params = useParams<{ category: string }>();
+	const location = useLocation();
 
-	const endpoint = categoryEndpoints[params.category ?? "popular-movies"];
+	const endpoint = categories?.find(
+		(cat) => cat.url === location.pathname
+	)?.value;
 
-	const {
-		data,
-		isLoading,
-		isError,
-		hasNextPage,
-		fetchNextPage,
-		isFetchingNextPage,
-	} = useInfiniteMovies({ endpoint });
+	const movies = useInfiniteMovies(endpoint);
 
-	if (isError) return <div>Error</div>;
-
-	const movies = data?.pages.map((page) => page.results).flat();
+	const movieList = movies?.data?.pages.map((page) => page.results).flat();
 
 	return (
 		<div className="space-y-5">
 			<Categories items={categories} />
 
 			<CardList
-				isLoading={isLoading}
-				items={movies}
+				isLoading={movies?.isLoading}
+				items={movieList}
 				component={MovieComponent}
 			/>
 
-			{movies && movies.length > 0 && (
+			{movieList && movieList?.length > 0 && (
 				<Button
-					disabled={!hasNextPage || isFetchingNextPage}
-					onClick={() => fetchNextPage()}
+					disabled={!movies?.hasNextPage || movies?.isFetchingNextPage}
+					onClick={() => movies?.fetchNextPage()}
 					className="space-x-2"
 				>
-					<span>{hasNextPage ? "Load More" : "No Data!"}</span>
+					<span>{movies?.hasNextPage ? "Load More" : "No Data!"}</span>
 
-					{isFetchingNextPage && <Spinner className="text-white" />}
+					{movies?.isFetchingNextPage && <Spinner className="text-white" />}
 				</Button>
 			)}
 		</div>

@@ -4,14 +4,12 @@ import ScrollList from "@/components/list/scroll-list";
 import MovieComponent from "@/features/movie/components/movie-comp";
 
 const PopularMovies: React.FC = () => {
-	const { data, isLoading } = useMovies({
-		endpoint: `movie/popular`,
-	});
+	const movies = useMovies("movie/popular");
 
 	return (
 		<ScrollList
-			items={data?.results}
-			isLoading={isLoading}
+			items={movies?.data?.results}
+			isLoading={movies?.isLoading}
 			component={MovieComponent}
 			title="Popular Movies"
 		/>

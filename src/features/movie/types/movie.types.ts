@@ -18,7 +18,7 @@ export interface Movie {
 export interface SingleMovie {
 	adult: boolean;
 	backdrop_path: string;
-	belongs_to_collection: any;
+	belongs_to_collection: string;
 	budget: number;
 	genres: Genre[];
 	homepage: string;

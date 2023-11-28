@@ -8,9 +8,9 @@ import { useImages } from "@/store/image-sizes";
 export const TvShowsDetails: React.FC = () => {
 	const { showId } = useParams();
 	const images = useImages((state) => state.url);
-	const { data: show, isLoading } = useGetShowDetails({ showId: showId! });
+	const show = useGetShowDetails(showId);
 
-	if (isLoading) {
+	if (show?.isLoading) {
 		return <Spinner />;
 	}
 
@@ -18,15 +18,15 @@ export const TvShowsDetails: React.FC = () => {
 		<div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 space-y-5">
 			<div>
 				<LazyImage
-					src={`${images?.poster_w780}${show?.poster_path}`}
-					alt={show?.name}
+					src={`${images?.poster_w780}${show?.data?.poster_path}`}
+					alt={show?.data?.name}
 					className="rounded-xl"
 				/>
 			</div>
 
 			<div>
-				<h1>{show?.name}</h1>
-				<p>{show?.origin_country}</p>
+				<h1>{show?.data?.name}</h1>
+				<p>{show?.data?.origin_country}</p>
 			</div>
 		</div>
 	);

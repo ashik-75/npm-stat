@@ -23,5 +23,7 @@ export const useGetImagesPath = () => {
 				setUrl(url);
 			});
 		}
-	}, []);
+	}, [url, setUrl]);
+
+	return null;
 };

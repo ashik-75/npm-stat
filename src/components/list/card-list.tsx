@@ -25,7 +25,7 @@ const CardList = <T extends ListItem>({
 	if (isLoading) return <Spinner />;
 
 	if (items.length === 0) {
-		return <EmptyState />;
+		return <EmptyState message="Nothing found!" />;
 	}
 
 	return (

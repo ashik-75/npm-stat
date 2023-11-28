@@ -2,14 +2,17 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { ApiResponse } from "@/features/movie/types";
 import { client } from "@/utils/api-client";
 
-export const baseQuery = <T>(queryKey: string[], queryFn: () => Promise<T>) => {
+export const useBaseQuery = <T>(
+	queryKey: string[],
+	queryFn: () => Promise<T>
+) => {
 	return useQuery({
 		queryKey,
 		queryFn,
 	});
 };
 
-export const baseInfiniteQuery = <T>(
+export const useBaseInfiniteQuery = <T>(
 	queryKey: string[],
 	fn: (payload: number) => Promise<ApiResponse<T>>
 ) => {

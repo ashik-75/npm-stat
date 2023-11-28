@@ -1,6 +1,5 @@
 import FullPageErrorFallback from "@/components/FullPageErrorFallback";
 import FullPageLoader from "@/components/FullPageLoader";
-import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import ScrollToTop from "@/components/scrool-to-top";
 import { useUser } from "@/store/user";

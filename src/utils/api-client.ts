@@ -1,7 +1,7 @@
 const api_url = import.meta.env.VITE_API_URL;
 
 interface ClientOptions {
-	data?: Record<string, any>;
+	data?: Record<string, string>;
 	token?: string;
 	headers?: Record<string, string>;
 }

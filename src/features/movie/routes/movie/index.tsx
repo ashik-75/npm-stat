@@ -11,19 +11,22 @@ import EmptyState from "@/components/ui/EmptyState";
 export const Movie: React.FC = () => {
 	const { movieId } = useParams();
 
-	const { data, isLoading } = useMovie({ movieId: movieId! });
-	const { data: videos } = useGetMovieVideos({ movieId: movieId! });
+	const movie = useMovie(movieId);
+	const movieVideos = useGetMovieVideos(movieId);
 
-	if (isLoading) {
+	if (movie.isLoading) {
 		return <Spinner />;
 	}
 
-	if (!data?.id) {
+	if (!movie.data?.id) {
 		return <EmptyState />;
 	}
 	return (
 		<div>
-			<MovieDetails movie={data} trailerId={videos?.results?.[0]?.key} />
+			<MovieDetails
+				movie={movie.data}
+				trailerId={movieVideos?.data?.results?.[0]?.key}
+			/>
 			<br />
 			<Cast />
 			<br />

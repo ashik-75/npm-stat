@@ -9,9 +9,9 @@ import { useMovies } from "@/features/movie/api/movies";
 export const SearchMovie: React.FC = () => {
 	const [searchParams] = useSearchParams();
 
-	const { data, isLoading } = useMovies({
-		endpoint: `/search/movie?query=${searchParams.get("q")}&page=1`,
-	});
+	const { data, isLoading } = useMovies(
+		`/search/movie?query=${searchParams.get("q")}&page=1`
+	);
 
 	if (isLoading) {
 		return <MoviesListSkeleton />;
