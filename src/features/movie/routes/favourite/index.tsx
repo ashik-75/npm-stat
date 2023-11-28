@@ -1,27 +1,18 @@
 import React from "react";
-import { useMovies } from "../../api/getMovies";
-import MoviesListSkeleton from "../../components/movies-list-skeleton";
-import EmptyMovie from "../../components/empty-movie";
-import MovieList from "../../components/movie-list";
+import ScrollList from "@/components/list/scroll-list";
+import MovieComponent from "@/features/movie/components/movie-comp";
+import { useMovies } from "@/features/movie/api/movies";
 
-const FavouriteList: React.FC = () => {
+export const FavouriteList: React.FC = () => {
 	const { data, isLoading } = useMovies({
 		endpoint: "account/11765010/favorite/movies?sort_by=created_at.desc",
 	});
 
-	if (isLoading) {
-		return <MoviesListSkeleton />;
-	}
-
 	return (
-		<div>
-			{data && data?.total_results > 0 ? (
-				<MovieList movies={data?.results} />
-			) : (
-				<EmptyMovie />
-			)}
-		</div>
+		<ScrollList
+			isLoading={isLoading}
+			component={MovieComponent}
+			items={data?.results}
+		/>
 	);
 };
-
-export default FavouriteList;

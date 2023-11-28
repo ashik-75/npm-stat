@@ -1,7 +1,6 @@
-import { useCredit } from "@/features/movie/api/get-credits";
-import CastList from "@/features/movie/components/cast-list";
-import EmptyMovie from "@/features/movie/components/empty-movie";
-import MoviesListSkeleton from "@/features/movie/components/movies-list-skeleton";
+import ScrollList from "@/components/list/scroll-list";
+import { useCredit } from "@/features/movie/api/credit";
+import { CastActor } from "@/features/movie/components/cast-actor";
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -11,17 +10,14 @@ const Cast: React.FC = () => {
 		endpoint: `movie/${movieId}/credits`,
 	});
 
-	if (isLoading) {
-		return <MoviesListSkeleton />;
-	}
-
-	if (!data?.id) {
-		return <EmptyMovie />;
-	}
 	return (
 		<>
-			<h1 className="font-bold mb-5 text-2xl">Actor Cast </h1>
-			<CastList casts={data?.cast} />
+			<ScrollList
+				items={data?.cast}
+				isLoading={isLoading}
+				component={CastActor}
+				title="Cast"
+			/>
 		</>
 	);
 };

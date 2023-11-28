@@ -27,7 +27,6 @@ const client = (
 		.fetch(`${api_url}/${endpoint}`, config)
 		.then(async (response) => {
 			const data = await response.json();
-			console.log("Response: ", data);
 			if (response.ok) {
 				return data;
 			} else {

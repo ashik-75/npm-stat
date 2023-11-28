@@ -1,21 +1,20 @@
 import React from "react";
-import { useMovies } from "../../../api/getMovies";
-import MovieList from "../../../components/movie-list";
-import MoviesListSkeleton from "@/features/movie/components/movies-list-skeleton";
+import { useMovies } from "@/features/movie/api/movies";
+import ScrollList from "@/components/list/scroll-list";
+import MovieComponent from "@/features/movie/components/movie-comp";
 
 const TrendingMovies: React.FC = () => {
 	const { data, isLoading } = useMovies({
 		endpoint: `trending/movie/week`,
 	});
 
-	if (isLoading) {
-		return <MoviesListSkeleton />;
-	}
 	return (
-		<div>
-			<h1 className="text-2xl font-bold mb-5">Trending Movies</h1>
-			<MovieList movies={data?.results} />
-		</div>
+		<ScrollList
+			items={data?.results}
+			isLoading={isLoading}
+			component={MovieComponent}
+			title="Trending Movies"
+		/>
 	);
 };
 

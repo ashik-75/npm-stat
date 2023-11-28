@@ -1,6 +1,6 @@
 import { User } from "@/features/auth/types";
 import { create } from "zustand";
-import { persist, createJSONStorage, devtools } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 type UserStore = {
 	user: User | null;
@@ -18,27 +18,5 @@ export const useUser = create(
 		{
 			name: "user",
 		}
-	)
-);
-
-type CountStore = {
-	count: number;
-	incrementCount: () => void;
-	decrementCount: () => void;
-};
-
-export const useCounter = create(
-	devtools(
-		persist<CountStore>(
-			(set) => ({
-				count: 0,
-				incrementCount: () => set((state) => ({ count: state.count + 1 })),
-				decrementCount: () => set((state) => ({ count: state.count - 1 })),
-			}),
-			{
-				name: "counter",
-				storage: createJSONStorage(() => localStorage),
-			}
-		)
 	)
 );

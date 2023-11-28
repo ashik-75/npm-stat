@@ -1,13 +1,14 @@
-import { Button, Input } from "@nextui-org/react";
 import React from "react";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import ErrorLabel from "@/components/ui/error-label";
-import { useLogin } from "../api/login";
+import { useLogin } from "@/features/auth/api/login";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "@/store/user";
-import { User } from "../types";
+import { User } from "@/features/auth/types";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const schema = z.object({
 	name: z.string().min(5).max(20),
@@ -53,13 +54,8 @@ const Login: React.FC = () => {
 					<ErrorLabel message={errors?.email?.message} />
 				</div>
 
-				<Button
-					isLoading={isPending}
-					type="submit"
-					variant="bordered"
-					color="secondary"
-				>
-					Login
+				<Button type="submit" variant="outline" color="secondary">
+					Login {isPending && <div>Loading ....</div>}
 				</Button>
 			</form>
 		</div>

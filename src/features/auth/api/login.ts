@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { User } from "../types";
+import { User } from "@/features/auth/types";
 import { MutationConfig } from "@/utils/react-query";
 
 export type CreateLoginDTO = {

@@ -1,11 +1,12 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { useMovies } from "../../api/getMovies";
-import MoviesListSkeleton from "../../components/movies-list-skeleton";
-import EmptyMovie from "../../components/empty-movie";
-import MovieList from "../../components/movie-list";
+import MoviesListSkeleton from "@/features/movie/components/movies-list-skeleton";
+import EmptyMovie from "@/features/movie/components/empty-movie";
+import CardList from "@/components/list/card-list";
+import MovieComponent from "@/features/movie/components/movie-comp";
+import { useMovies } from "@/features/movie/api/movies";
 
-const SearchMovie: React.FC = () => {
+export const SearchMovie: React.FC = () => {
 	const [searchParams] = useSearchParams();
 
 	const { data, isLoading } = useMovies({
@@ -19,15 +20,18 @@ const SearchMovie: React.FC = () => {
 	if (data?.results.length === 0) {
 		return <EmptyMovie />;
 	}
+
 	return (
 		<div>
 			<h1 className="text-xl font-semibold">
 				Search for : {searchParams.get("q")}
 			</h1>
 			<br />
-			<MovieList movies={data?.results} />
+			<CardList
+				items={data?.results}
+				isLoading={isLoading}
+				component={MovieComponent}
+			/>
 		</div>
 	);
 };
-
-export default SearchMovie;

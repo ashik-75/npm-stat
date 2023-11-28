@@ -2,17 +2,19 @@ import React from "react";
 import SearchBar from "./section/search-bar";
 import ProfileAvatar from "./section/profile-avatar";
 
+import MobileNav from "./mobile-nav";
+import MainNav from "./main-nav";
+
 const Navbar: React.FC = () => {
 	return (
 		<nav
 			id="navbar"
-			className="flex items-center justify-between p-5 bg-zinc-100 sticky top-0 z-30"
+			className="flex items-center justify-between p-5 border-b border-b-slate-100 sticky top-0 z-30 backdrop-blur-md"
 		>
-			<div>
-				<img src="/amd.png" className="w-10 h-10" alt="" />
-			</div>
+			<MobileNav />
+			<MainNav />
 
-			<div className="flex gap-5 w-[50%] items-center">
+			<div className="flex  gap-5 items-center">
 				<SearchBar />
 				<ProfileAvatar />
 			</div>

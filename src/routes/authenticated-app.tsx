@@ -1,40 +1,61 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
 import { ErrorBoundary } from "react-error-boundary";
-import FullPageErrorFallback from "../components/FullPageErrorFallback";
-import WatchList from "../features/movie/routes/watchlist";
-import Movie from "../features/movie/routes/movie";
-import Discover from "../features/movie/routes/discover";
-import ErrorMessage from "../components/ui/ErrorMessage";
-import FavouriteList from "../features/movie/routes/favourite";
-import Navbar from "../components/layout/navbar";
-import Sidebar from "../components/layout/sidebar";
-import SearchMovie from "../features/movie/routes/search-movie";
-import NotFound from "../features/misc/routes/not-found";
-import Account from "../features/auth/routes/account";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import Sidebar from "@/components/layout/sidebar";
+import NotFound from "@/features/misc/routes/not-found";
+import Account from "@/features/auth/routes/account";
+import { lazyImport } from "@/utils/lazy-import";
+import { useGetImagesPath } from "@/utils/hooks";
+import Footer from "@/components/layout/footer";
 
 interface ErrorFallbackProps {
 	error: Error;
 }
+
+const { Movie } = lazyImport(() => import("@/features/movie"), "Movie");
+const { Discover } = lazyImport(() => import("@/features/movie"), "Discover");
+const { FavouriteList } = lazyImport(
+	() => import("@/features/movie"),
+	"FavouriteList"
+);
+const { SearchMovie } = lazyImport(
+	() => import("@/features/movie"),
+	"SearchMovie"
+);
+const { WatchList } = lazyImport(() => import("@/features/movie"), "WatchList");
+const { Movies } = lazyImport(() => import("@/features/movie"), "Movies");
+const { TvShows } = lazyImport(() => import("@/features/movie"), "TvShows");
+const { TvShowsDetails } = lazyImport(
+	() => import("@/features/movie"),
+	"TvShowsDetails"
+);
+const { People } = lazyImport(() => import("@/features/movie"), "People");
+const { PersonDetails } = lazyImport(
+	() => import("@/features/movie"),
+	"PersonDetails"
+);
 
 const ErrorFallBack: React.FC<ErrorFallbackProps> = ({ error }) => {
 	return <ErrorMessage message={error.message} />;
 };
 
 const AuthenticatedApp: React.FC = () => {
+	useGetImagesPath();
+
 	return (
 		<>
-			<div className="grid grid-cols-4 gap-5 min-h-screen">
+			<div className="tablet:grid tablet:gap-5 monitor:gap-10 tablet:grid-cols-[220px_minmax(0,1fr)] monitor:grid-cols-[250px_minmax(0,1fr)]">
 				<Sidebar />
-				<main className="col-span-3">
-					<ErrorBoundary FallbackComponent={ErrorFallBack}>
-						<AuthenticatedRoutes />
-					</ErrorBoundary>
+
+				<main className="p-3 tablet:py-6 tablet:px-0">
+					<React.Suspense fallback={<div>Loading for compo .....</div>}>
+						<ErrorBoundary FallbackComponent={ErrorFallBack}>
+							<AuthenticatedRoutes />
+						</ErrorBoundary>
+					</React.Suspense>
 				</main>
 			</div>
-
-			<footer className="p-5 bg-zinc-100">Credit goes to alpine</footer>
 		</>
 	);
 };
@@ -49,7 +70,14 @@ const AuthenticatedRoutes = () => {
 			<Route path="/account" element={<Account />} />
 			<Route path="/search" element={<SearchMovie />} />
 			<Route path="/movie/:movieId" element={<Movie />} />
+			<Route path="/movies" element={<Movies />} />
+			<Route path="/movies/:category" element={<Movies />} />
+			<Route path="/tv-shows" element={<TvShows />} />
+			<Route path="/tv-shows/:showType" element={<TvShows />} />
+			<Route path="/tv-show/:showId" element={<TvShowsDetails />} />
 			<Route path="/watch-list" element={<WatchList />} />
+			<Route path="/people" element={<People />} />
+			<Route path="/people/:personId" element={<PersonDetails />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

@@ -2,7 +2,7 @@ import React from "react";
 import PopularMovies from "./section/popular-movies";
 import TrendingMovies from "./section/trending-movies";
 
-const Discover: React.FC = () => {
+export const Discover: React.FC = () => {
 	return (
 		<div className="space-y-5">
 			<PopularMovies />
@@ -10,5 +10,3 @@ const Discover: React.FC = () => {
 		</div>
 	);
 };
-
-export default Discover;
