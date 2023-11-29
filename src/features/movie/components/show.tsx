@@ -22,7 +22,7 @@ const Show: React.FC<ListItemProps<ShowType>> = ({
 				className
 			)}
 		>
-			<Link to={`/tv-shows/${id}`}>
+			<Link to={`/tv-show/${id}`}>
 				<LazyImage
 					src={
 						poster_path ? `${url.poster_w342}${poster_path}` : "/no-image.png"

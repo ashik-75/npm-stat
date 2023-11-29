@@ -11,11 +11,11 @@ const fetchTvSeries = (
 };
 
 const fetchSingleTvSeries = (
-	endpoint: string | undefined
+	seriesId: string | undefined
 ): Promise<ShowDetails> => {
-	return endpoint === undefined
+	return seriesId === undefined
 		? Promise.reject(new Error("Invalid Id"))
-		: client(endpoint);
+		: client(`tv/${seriesId}`);
 };
 
 export const useGetTvSeries = (endpoint: string | undefined) => {

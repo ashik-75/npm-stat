@@ -2,9 +2,11 @@ import React from "react";
 import { FileWarning } from "lucide-react";
 
 type ErrorMessageProps = {
-	message: string;
+	message?: string;
 };
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = ({
+	message = "Something went wrong, please try again.",
+}) => {
 	return (
 		<div className="max-w-xl overflow-auto mx-auto p-5 border rounded text-center space-y-3">
 			<div className="flex justify-center">

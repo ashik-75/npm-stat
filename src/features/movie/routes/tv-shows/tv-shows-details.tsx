@@ -4,14 +4,24 @@ import { useParams } from "react-router-dom";
 import Spinner from "@/components/ui/Spinner";
 import LazyImage from "@/components/ui/LazyImage";
 import { useImages } from "@/store/image-sizes";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import EmptyState from "@/components/ui/EmptyState";
 
 const TvShowsDetails: React.FC = () => {
 	const { showId } = useParams();
 	const images = useImages((state) => state.url);
 	const show = useGetShowDetails(showId);
 
-	if (show?.isLoading) {
+	if (show.isError) {
+		return <ErrorMessage />;
+	}
+
+	if (show.isLoading && !show.data) {
 		return <Spinner />;
+	}
+
+	if (!show.data?.id) {
+		return <EmptyState />;
 	}
 
 	return (
