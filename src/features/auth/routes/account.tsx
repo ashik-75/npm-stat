@@ -1,4 +1,3 @@
-import PageLoader from "@/components/PageLoader";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/store/user";
 import React, { useEffect, useState } from "react";
