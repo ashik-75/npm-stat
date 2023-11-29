@@ -1,14 +1,13 @@
 import React from "react";
-import Spinner from "./ui/Spinner";
+import { cn } from "@/utils/merge";
+import { Loader } from "lucide-react";
 
-interface PageLoaderProps {
-  size?: number;
-}
-
-const PageLoader: React.FC<PageLoaderProps> = ({ size = 20 }) => {
+const PageLoader: React.FC = () => {
   return (
-    <div className="relative flex h-[calc(100vh-96px)] w-full items-center justify-center bg-rose-600">
-      <Spinner size={size} />
+    <div className="relative flex h-[calc(100vh-96px)] w-full items-center justify-center bg-slate-50 backdrop-blur-xl">
+      <div className="inline-block">
+        <Loader className={cn(`h-[50px] w-[50px] animate-spin`)} />
+      </div>
     </div>
   );
 };
