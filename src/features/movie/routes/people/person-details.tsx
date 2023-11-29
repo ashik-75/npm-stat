@@ -5,7 +5,7 @@ import LazyImage from "@/components/ui/LazyImage";
 import { useImages } from "@/store/image-sizes";
 import Spinner from "@/components/ui/Spinner";
 
-export const PersonDetails: React.FC = () => {
+const PersonDetails: React.FC = () => {
 	const { personId } = useParams();
 	const [length, setLength] = useState(500);
 	const person = useGetPeople(`person/${personId}`);
@@ -50,3 +50,5 @@ export const PersonDetails: React.FC = () => {
 		</div>
 	);
 };
+
+export default PersonDetails;

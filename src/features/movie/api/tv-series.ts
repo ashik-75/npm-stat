@@ -21,7 +21,7 @@ const fetchSingleTvSeries = (
 export const useGetTvSeries = (endpoint: string | undefined) => {
 	return useInfiniteQuery({
 		queryKey: [endpoint],
-		queryFn: () => fetchTvSeries(endpoint),
+		queryFn: ({ pageParam }) => fetchTvSeries(`${endpoint}?page=${pageParam}`),
 		enabled: Boolean(endpoint),
 		initialPageParam: 1,
 		getNextPageParam: (lastPage) => {

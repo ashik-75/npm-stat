@@ -6,19 +6,18 @@ import { useParams } from "react-router-dom";
 
 const Cast: React.FC = () => {
 	const { movieId } = useParams();
-	const { data, isLoading } = useCredit({
+	const credit = useCredit({
 		endpoint: `movie/${movieId}/credits`,
 	});
 
 	return (
-		<>
-			<ScrollList
-				items={data?.cast}
-				isLoading={isLoading}
-				component={CastActor}
-				title="Cast"
-			/>
-		</>
+		<ScrollList
+			isLoading={credit.isLoading}
+			isError={credit.isError}
+			items={credit?.data?.cast}
+			component={CastActor}
+			title="Cast"
+		/>
 	);
 };
 

@@ -5,7 +5,7 @@ import Spinner from "@/components/ui/Spinner";
 import LazyImage from "@/components/ui/LazyImage";
 import { useImages } from "@/store/image-sizes";
 
-export const TvShowsDetails: React.FC = () => {
+const TvShowsDetails: React.FC = () => {
 	const { showId } = useParams();
 	const images = useImages((state) => state.url);
 	const show = useGetShowDetails(showId);
@@ -31,3 +31,5 @@ export const TvShowsDetails: React.FC = () => {
 		</div>
 	);
 };
+
+export default TvShowsDetails;

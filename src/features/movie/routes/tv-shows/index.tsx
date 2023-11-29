@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Spinner from "@/components/ui/Spinner";
 
-export const TvShows: React.FC = () => {
+const TvShows: React.FC = () => {
 	const location = useLocation();
 
 	const show =
@@ -23,9 +23,10 @@ export const TvShows: React.FC = () => {
 		<div className="space-y-5">
 			<Categories items={tvShowsCategory} />
 			<CardList
-				component={Show}
-				items={tvShowsList}
 				isLoading={tvShows?.isLoading}
+				isError={tvShows?.isError}
+				items={tvShowsList}
+				component={Show}
 			/>
 
 			{tvShowsList && tvShowsList?.length > 0 && (
@@ -43,3 +44,5 @@ export const TvShows: React.FC = () => {
 		</div>
 	);
 };
+
+export default TvShows;

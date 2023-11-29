@@ -8,10 +8,11 @@ const TrendingMovies: React.FC = () => {
 
 	return (
 		<ScrollList
-			items={movies?.data?.results}
-			isLoading={movies.isLoading}
-			component={MovieComponent}
 			title="Trending Movies"
+			isLoading={movies.isLoading}
+			isError={movies.isError}
+			items={movies?.data?.results}
+			component={MovieComponent}
 		/>
 	);
 };

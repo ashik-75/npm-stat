@@ -32,14 +32,12 @@ export const useMovies = (endpoint: string | undefined) => {
 
 export const useInfiniteMovies = (endpoint: string | undefined) => {
 	return useInfiniteQuery({
-		queryKey: ["movies", endpoint],
-		queryFn: ({ pageParam = 1 }) => {
-			return fetchMovies(`${endpoint}?page=${pageParam}`);
-		},
-		getNextPageParam: (lastPage) => {
-			return lastPage?.total_pages > lastPage?.page ? lastPage?.page + 1 : null;
-		},
-		initialPageParam: 1,
+		queryKey: [endpoint],
+		queryFn: ({ pageParam }) => fetchMovies(`${endpoint}?page=${pageParam}`),
 		enabled: Boolean(endpoint),
+		initialPageParam: 1,
+		getNextPageParam: (lastPage) => {
+			return lastPage.total_pages > lastPage.page ? lastPage.page + 1 : null;
+		},
 	});
 };

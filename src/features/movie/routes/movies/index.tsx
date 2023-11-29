@@ -8,7 +8,7 @@ import Categories from "../../components/categories";
 import { categories } from "./data";
 import Spinner from "@/components/ui/Spinner";
 
-export const Movies: React.FC = () => {
+const Movies: React.FC = () => {
 	const location = useLocation();
 
 	const endpoint = categories?.find(
@@ -25,6 +25,7 @@ export const Movies: React.FC = () => {
 
 			<CardList
 				isLoading={movies?.isLoading}
+				isError={movies.isError}
 				items={movieList}
 				component={MovieComponent}
 			/>
@@ -43,3 +44,5 @@ export const Movies: React.FC = () => {
 		</div>
 	);
 };
+
+export default Movies;

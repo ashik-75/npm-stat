@@ -5,7 +5,7 @@ import PeopleComponent from "@/features/movie/components/people";
 import { Button } from "@/components/ui/button";
 import Spinner from "@/components/ui/Spinner";
 
-export const People: React.FC = () => {
+const People: React.FC = () => {
 	const personList = useGetPersonist("person/popular");
 	const people_list = personList?.data?.pages
 		.map((page) => page.results)
@@ -17,6 +17,7 @@ export const People: React.FC = () => {
 				items={people_list}
 				component={PeopleComponent}
 				isLoading={personList?.isLoading}
+				isError={personList.isError}
 			/>
 
 			{people_list && people_list.length > 0 && (
@@ -32,3 +33,5 @@ export const People: React.FC = () => {
 		</div>
 	);
 };
+
+export default People;

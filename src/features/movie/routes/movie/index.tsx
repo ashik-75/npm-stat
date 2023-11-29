@@ -8,7 +8,7 @@ import { useGetMovieVideos } from "@/features/movie/api/videos";
 import { useMovie } from "@/features/movie/api/movies";
 import EmptyState from "@/components/ui/EmptyState";
 
-export const Movie: React.FC = () => {
+const Movie: React.FC = () => {
 	const { movieId } = useParams();
 
 	const movie = useMovie(movieId);
@@ -34,3 +34,5 @@ export const Movie: React.FC = () => {
 		</div>
 	);
 };
+
+export default Movie;

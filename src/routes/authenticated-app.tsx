@@ -1,38 +1,29 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Sidebar from "@/components/layout/sidebar";
 import NotFound from "@/features/misc/routes/not-found";
 import Account from "@/features/auth/routes/account";
-import { lazyImport } from "@/utils/lazy-import";
 import { useGetImagesPath } from "@/utils/hooks";
 
 interface ErrorFallbackProps {
 	error: Error;
 }
 
-const { Movie } = lazyImport(() => import("@/features/movie"), "Movie");
-const { Discover } = lazyImport(() => import("@/features/movie"), "Discover");
-const { FavouriteList } = lazyImport(
-	() => import("@/features/movie"),
-	"FavouriteList"
+const People = lazy(() => import("@/features/movie/routes/people"));
+const Movie = lazy(() => import("@/features/movie/routes/movie"));
+const Discover = lazy(() => import("@/features/movie/routes/discover"));
+const FavouriteList = lazy(() => import("@/features/movie/routes/favourite"));
+const SearchMovie = lazy(() => import("@/features/movie/routes/search-movie"));
+const WatchList = lazy(() => import("@/features/movie/routes/watchlist"));
+const Movies = lazy(() => import("@/features/movie/routes/movies"));
+const TvShows = lazy(() => import("@/features/movie/routes/tv-shows"));
+const TvShowsDetails = lazy(
+	() => import("@/features/movie/routes/tv-shows/tv-shows-details")
 );
-const { SearchMovie } = lazyImport(
-	() => import("@/features/movie"),
-	"SearchMovie"
-);
-const { WatchList } = lazyImport(() => import("@/features/movie"), "WatchList");
-const { Movies } = lazyImport(() => import("@/features/movie"), "Movies");
-const { TvShows } = lazyImport(() => import("@/features/movie"), "TvShows");
-const { TvShowsDetails } = lazyImport(
-	() => import("@/features/movie"),
-	"TvShowsDetails"
-);
-const { People } = lazyImport(() => import("@/features/movie"), "People");
-const { PersonDetails } = lazyImport(
-	() => import("@/features/movie"),
-	"PersonDetails"
+const PersonDetails = lazy(
+	() => import("@/features/movie/routes/people/person-details")
 );
 
 const ErrorFallBack: React.FC<ErrorFallbackProps> = ({ error }) => {

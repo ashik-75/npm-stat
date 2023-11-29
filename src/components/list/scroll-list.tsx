@@ -3,25 +3,32 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ListItem, ListItemProps } from "./card-list";
 import Spinner from "@/components/ui/Spinner";
 import EmptyState from "@/components/ui/EmptyState";
+import ErrorMessage from "../ui/ErrorMessage";
 
 interface ScrollListProps<T> {
 	items?: T[];
 	component: React.ComponentType<ListItemProps<T>>;
-	isLoading: boolean;
+	isLoading?: boolean;
+	isError?: boolean;
 	title: string;
 }
 
 const ScrollList = <T extends ListItem>({
-	items = [],
+	items,
 	component: Component,
 	isLoading,
+	isError,
 	title,
 }: ScrollListProps<T>) => {
-	if (isLoading) {
+	if (isError) {
+		return <ErrorMessage message="Something went wrong" />;
+	}
+
+	if (isLoading && !items) {
 		return <Spinner />;
 	}
 
-	if (items.length === 0) {
+	if (items?.length === 0 || !items) {
 		return <EmptyState />;
 	}
 
