@@ -2,15 +2,15 @@ import React from "react";
 import Spinner from "./ui/Spinner";
 
 interface PageLoaderProps {
-	size?: number;
+  size?: number;
 }
 
 const PageLoader: React.FC<PageLoaderProps> = ({ size = 20 }) => {
-	return (
-		<div className="h-full w-full relative flex items-center justify-center">
-			<Spinner size={size} />
-		</div>
-	);
+  return (
+    <div className="relative flex h-[calc(100vh-96px)] w-full items-center justify-center bg-rose-600">
+      <Spinner size={size} />
+    </div>
+  );
 };
 
 export default PageLoader;

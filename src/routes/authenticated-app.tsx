@@ -39,13 +39,13 @@ const AuthenticatedApp: React.FC = () => {
       <div className="monitor:gap-10 monitor:grid-cols-[250px_minmax(0,1fr)] tablet:grid tablet:grid-cols-[220px_minmax(0,1fr)] tablet:gap-5">
         <Sidebar />
 
-        <main className="p-3 tablet:px-0 tablet:py-6">
-          <ErrorBoundary FallbackComponent={ErrorFallBack}>
-            <React.Suspense fallback={<PageLoader />}>
+        <ErrorBoundary FallbackComponent={ErrorFallBack}>
+          <React.Suspense fallback={<PageLoader />}>
+            <main className="p-3 tablet:px-0 tablet:py-6">
               <AuthenticatedRoutes />
-            </React.Suspense>
-          </ErrorBoundary>
-        </main>
+            </main>
+          </React.Suspense>
+        </ErrorBoundary>
       </div>
     </>
   );
