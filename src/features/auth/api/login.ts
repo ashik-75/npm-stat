@@ -1,37 +1,34 @@
 import { useMutation } from "@tanstack/react-query";
 import { User } from "@/features/auth/types";
-import { MutationConfig } from "@/utils/react-query";
+import { useUser } from "@/store/user";
+import { useNavigate } from "react-router-dom";
 
 export type CreateLoginDTO = {
-	name: string;
-	email: string;
+  name: string;
+  email: string;
 };
 
 const loginReg = (info: CreateLoginDTO): Promise<User> => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			return resolve({
-				name: info.name,
-				email: info.email,
-				token: Date.now(),
-			});
-		}, 2000);
-	});
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      return resolve({
+        name: info.name,
+        email: info.email,
+        token: Date.now(),
+      });
+    }, 2000);
+  });
 };
 
-type LoginFnType = typeof loginReg;
+export const useLogin = () => {
+  const { addUser } = useUser();
+  const navigate = useNavigate();
 
-type UseLoginOptions = {
-	config?: MutationConfig<LoginFnType>;
-	onSuccess: (user: User) => void;
-};
-
-export const useLogin = ({ config, onSuccess }: UseLoginOptions) => {
-	return useMutation({
-		...config,
-		mutationFn: loginReg,
-		onSuccess: (data) => {
-			onSuccess(data);
-		},
-	});
+  return useMutation({
+    mutationFn: loginReg,
+    onSuccess: (data) => {
+      addUser(data);
+      navigate("/");
+    },
+  });
 };
