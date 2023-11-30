@@ -1,38 +1,54 @@
 import { Button } from "@/components/ui/button";
-import { useUser } from "@/store/user";
-import React, { useEffect, useState } from "react";
+import { cn } from "@/utils/merge";
+import { icons } from "lucide-react";
+import React, { useState } from "react";
 
 const Account: React.FC = () => {
-  const { user, removeUser } = useUser();
-
-  const [url, setUrl] = useState("");
-
-  useEffect(() => {
-    setTimeout(() => {
-      setUrl("https://image.tmdb.org/t/p/w185/pNszmvyca2y3BUvDa9MtarvJ1rt.jpg");
-    }, 5000);
-  }, []);
+  const [number, setNumber] = useState(18);
 
   return (
-    <div>
-      <p>Name: {user?.name}</p>
-      <br />
-      <div className="space-x-2">
-        <Button>save user</Button>
-        <Button onClick={removeUser}>Delete Account</Button>
+    <div className="space-y-5">
+      <div className="space-x-5">
+        <Button onClick={() => setNumber((prev) => prev + 1)}>Increment</Button>
+        <span>{number}</span>
+        <Button
+          onClick={() => setNumber((prev) => (prev > 10 ? prev - 1 : prev))}
+        >
+          Decrement
+        </Button>
       </div>
+
       <div className="grid grid-cols-4 gap-5">
-        <div className="relative aspect-[1/1.5]">
-          <div className="absolute left-0 top-0 bg-rose-500"></div>
-          <img
-            src={url}
-            alt=""
-            className="absolute left-0 top-0 h-full w-full"
-          />
-        </div>
+        <Loader name="RotateCw" size={number} />
+        <Loader name="CircleDashed" size={number} />
+        <Loader name="RefreshCcw" size={number} />
+        <Loader name="Loader2" size={number} />
+        <Loader name="Loader" size={number} />
+        <Loader name="RotateCcw" size={number} />
+        <Loader name="Airplay" className="animate-pulse" size={number} />
       </div>
     </div>
   );
 };
 
 export default Account;
+
+export type IconName = keyof typeof icons;
+
+interface IconProps {
+  name: IconName;
+  size?: number;
+  color?: string;
+  className?: string;
+  strokeWidth?: string;
+}
+
+const Loader: React.FC<IconProps> = ({ size, name, className }) => {
+  const LucideIcon = icons[name];
+  return (
+    <LucideIcon
+      size={size}
+      className={cn(`animate-spin text-zinc-500`, className)}
+    />
+  );
+};
