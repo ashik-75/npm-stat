@@ -26,6 +26,7 @@ module.exports = {
       fontFamily: {
         inter: `'Inter', sans-serif`,
         cl: `'Inclusive Sans', sans-serif`,
+        karla: `'Karla', sans-serif`,
       },
       colors: {
         // light mode

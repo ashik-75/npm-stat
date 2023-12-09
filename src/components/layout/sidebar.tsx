@@ -10,10 +10,9 @@ const Sidebar: React.FC = () => {
         <div className="flex h-full flex-col justify-between">
           <div className="">
             <div className="ml-3 flex items-center gap-1 p-5">
-              <span className="font-cl font-semibold text-black">Mercury</span>
-              <span className="font-semibold text-rose-600">App</span>
+              <span className="font-bold uppercase text-black">X - Trail</span>
             </div>
-            <ScrollArea className="h-[700px]">
+            <ScrollArea className="h-[70dvh]">
               <div className="space-y-2 px-5">
                 {docsConfig.sideNav.map((item) => (
                   <Menu key={item.url} item={item} />

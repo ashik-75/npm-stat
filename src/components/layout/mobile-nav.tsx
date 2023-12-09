@@ -14,15 +14,17 @@ const MobileNav = () => {
           <Icon name="Menu" size={25} />
         </button>
       </SheetTrigger>
-      <SheetContent side={"left"} className="w-[300px] p-0">
+      <SheetContent
+        side={"left"}
+        className="w-[300px] bg-neutral-50 p-0  text-slate-600"
+      >
         <div className="flex h-full flex-col justify-between">
           <div className="space-y-5 ">
             <div className="ml-3 flex items-center gap-1 p-5">
-              <span className="font-semibold text-black">Mercury</span>
-              <span className="font-semibold text-rose-600">App</span>
+              <span className="font-bold uppercase text-black">X - Trail</span>
             </div>
 
-            <ScrollArea className="h-[700px]">
+            <ScrollArea className="h-[70dvh] ">
               <div className="space-y-2 px-5">
                 {docsConfig.sideNav.map((item) => (
                   <Menu

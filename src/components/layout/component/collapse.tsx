@@ -28,7 +28,7 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
       <CollapsibleTrigger
         asChild
         className={clsx(
-          "flex cursor-pointer items-center gap-2 rounded-xl border border-transparent px-4 py-2 font-semibold hover:border-zinc-200 hover:bg-white",
+          "flex cursor-pointer items-center gap-2 rounded border border-transparent px-4 py-2 font-semibold hover:border-zinc-200 hover:bg-white",
         )}
       >
         <div className="flex w-full items-center justify-between">
@@ -50,9 +50,9 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
             to={sub.url}
             className={({ isActive }) =>
               clsx(
-                "flex items-center gap-2 rounded-xl border border-transparent px-11 py-2 hover:border-zinc-200 hover:bg-slate-100",
+                "flex items-center gap-2 rounded border border-transparent px-11 py-2 hover:border-zinc-200 hover:bg-white",
                 {
-                  "border-zinc-200 bg-slate-100": isActive,
+                  "border-zinc-200 bg-white": isActive,
                 },
               )
             }
@@ -60,7 +60,7 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
               onOpenChange && onOpenChange();
             }}
           >
-            <span className="font-mono">{sub.title}</span>
+            <span className="font-semibold">{sub.title}</span>
           </NavLink>
         ))}
       </CollapsibleContent>

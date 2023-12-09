@@ -8,7 +8,7 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="lg:grid-cols-[300px_minmax(0,1fr)] font-inter  grid">
+    <div className="lg:grid-cols-[300px_minmax(0,1fr)] font-karla  grid">
       <Sidebar />
 
       <div>
