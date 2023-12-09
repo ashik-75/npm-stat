@@ -7,14 +7,17 @@ import {
 } from "@/components/ui/collapsible";
 import Icon from "@/components/ui/icon";
 import clsx from "clsx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { MenuProps } from "./menu";
 
 export const CollapsibleDemo: React.FC<MenuProps> = ({
   item,
   onOpenChange,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const location = useLocation();
+  const [isOpen, setIsOpen] = React.useState(
+    location.pathname.includes(item.url),
+  );
 
   return (
     <Collapsible
@@ -47,20 +50,17 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
             to={sub.url}
             className={({ isActive }) =>
               clsx(
-                "flex items-center gap-2 rounded-xl border border-transparent px-11 py-2 hover:border-zinc-200 hover:bg-white",
+                "flex items-center gap-2 rounded-xl border border-transparent px-11 py-2 hover:border-zinc-200 hover:bg-slate-100",
                 {
-                  "border-zinc-200 bg-white": isActive,
+                  "border-zinc-200 bg-slate-100": isActive,
                 },
               )
             }
             onClick={() => {
-              console.log("clicked", onOpenChange);
               onOpenChange && onOpenChange();
             }}
           >
-            <span className="text-sm font-medium  tracking-wider">
-              {sub.title}
-            </span>
+            <span className="font-mono">{sub.title}</span>
           </NavLink>
         ))}
       </CollapsibleContent>
