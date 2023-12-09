@@ -34,7 +34,7 @@ export const docsConfig: DocsConfig = {
       children: [
         {
           title: "List",
-          url: "/product/list",
+          url: "/product",
         },
         {
           title: "Create",

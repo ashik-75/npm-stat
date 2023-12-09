@@ -2,6 +2,7 @@ import React from "react";
 import { docsConfig } from "./data/nav-data";
 import Menu from "./component/menu";
 import { ScrollArea } from "../ui/scroll-area";
+import { Link } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
   return (
@@ -10,7 +11,11 @@ const Sidebar: React.FC = () => {
         <div className="flex h-full flex-col justify-between">
           <div className="">
             <div className="ml-3 flex items-center gap-1 p-5">
-              <span className="font-bold uppercase text-black">X - Trail</span>
+              <Link to={"/"}>
+                <span className="font-bold uppercase text-black">
+                  X - Trail
+                </span>
+              </Link>
             </div>
             <ScrollArea className="h-[70dvh]">
               <div className="space-y-2 px-5">

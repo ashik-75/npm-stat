@@ -12,6 +12,15 @@ interface ErrorFallbackProps {
 }
 
 const Dashboard = lazy(() => import("@/features/dashboard/routes/dashboard"));
+const ProductList = lazy(
+  () => import("@/features/products/routes/product-list"),
+);
+const ProductDetails = lazy(
+  () => import("@/features/products/routes/product-details"),
+);
+const CreateProduct = lazy(
+  () => import("@/features/products/routes/create-product"),
+);
 
 const ErrorFallBack: React.FC<ErrorFallbackProps> = ({ error }) => {
   return <ErrorMessage message={error.message} />;
@@ -37,6 +46,10 @@ const AuthenticatedRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
+      <Route path="/product" element={<ProductList />} />
+      <Route path="/product/:productSlug" element={<ProductDetails />} />
+      <Route path="/product/create" element={<CreateProduct />} />
+
       <Route path="/account" element={<Account />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

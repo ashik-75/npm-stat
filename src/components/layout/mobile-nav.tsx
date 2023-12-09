@@ -4,6 +4,7 @@ import { useState } from "react";
 import Icon from "../ui/icon";
 import Menu from "./component/menu";
 import { ScrollArea } from "../ui/scroll-area";
+import { Link } from "react-router-dom";
 
 const MobileNav = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -21,7 +22,11 @@ const MobileNav = () => {
         <div className="flex h-full flex-col justify-between">
           <div className="space-y-5 ">
             <div className="ml-3 flex items-center gap-1 p-5">
-              <span className="font-bold uppercase text-black">X - Trail</span>
+              <Link to={"/"}>
+                <span className="font-bold uppercase text-black">
+                  X - Trail
+                </span>
+              </Link>
             </div>
 
             <ScrollArea className="h-[70dvh] ">
