@@ -13,9 +13,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="grid font-inter lg:grid-cols-[300px_minmax(0,1fr)]">
         <Sidebar />
 
-        <div>
+        <div className="overflow-hidden">
           <Topbar />
-          <div className="mx-auto max-w-7xl shrink-0 overflow-hidden bg-white font-inter">
+          <div className="mx-auto max-w-7xl bg-white font-inter">
             {children}
           </div>
         </div>
