@@ -1,4 +1,4 @@
-import { Progress } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
 import React from "react";
 
 const FullPageSpinner: React.FC = () => {
@@ -20,17 +20,11 @@ const FullPageSpinner: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center gap-5 overflow-hidden font-inter">
+    <div className="flex h-screen w-full flex-col items-center justify-center gap-5 overflow-hidden p-5 font-inter">
       <div className="block w-full  text-center text-3xl font-bold">
         {value}%
       </div>
-      <Progress
-        aria-label="Downloading..."
-        size="md"
-        value={value}
-        color="danger"
-        className="max-w-md"
-      />
+      <Spinner label="Loading..." color="warning" />
     </div>
   );
 };
