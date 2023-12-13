@@ -6,23 +6,27 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@tremor/react";
 import React, { useState } from "react";
+import { useToast } from "./use-toast";
 
-const Modal: React.FC = () => {
+const Modal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleClick = () => {
     setLoading(true);
     setTimeout(() => {
       setOpen(false);
       setLoading(false);
+      toast({
+        title: "Product Deleted",
+        description: "Successfully deleted this product",
+      });
     }, 1000);
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="rounded border-transparent p-4">
         <h1 className="font-inter text-xl font-bold">Delete</h1>
 

@@ -1,22 +1,34 @@
 import { Product } from "./types";
+import { faker } from "@faker-js/faker";
 
-const generateRandomProduct = (id: number): Product => ({
-  id: id.toString(),
-  title: `Product ${id}`,
-  category: `Category ${id % 5}`, // Assuming 5 categories
-  image: `https://example.com/image${id}.jpg`,
-  createdAt: new Date().toISOString(),
-  stock: Math.floor(Math.random() * 100) + 1, // Random stock between 1 and 100
-  price: (Math.random() * 100).toFixed(2), // Random price with 2 decimal places
-  status: id % 2 === 0 ? "draft" : "published", // Alternating between "draft" and "published"
+const generateRandomOrder = (): Product => ({
+  id: faker.datatype.string(5),
+  title: faker.commerce.productName(),
+  category: faker.commerce.product(),
+  image: faker.image.url(),
+  createdAt: faker.date.recent().toISOString(),
+  stock: faker.number.int(100),
+  price: faker.commerce.price(),
+  status: faker.helpers.arrayElement(["draft", "published"]),
 });
 
-const generateArrayOfProducts = (num: number): Product[] => {
-  const products = [];
-  for (let i = 1; i <= num; i++) {
-    products.push(generateRandomProduct(i));
+const generateOrders = (count: number): Product[] => {
+  const orders: Product[] = [];
+  for (let i = 0; i < count; i++) {
+    orders.push(generateRandomOrder());
   }
-  return products;
+  return orders;
 };
 
-export const productListData = generateArrayOfProducts(100);
+export const productListData: Product[] = generateOrders(50);
+
+export const productStatus = [
+  {
+    label: "Draft",
+    value: "draft",
+  },
+  {
+    label: "Published",
+    value: "published",
+  },
+];

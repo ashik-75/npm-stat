@@ -22,6 +22,8 @@ const CreateProduct = lazy(
   () => import("@/features/products/routes/create-product"),
 );
 const InvoiceList = lazy(() => import("@/features/invoice/routes/list"));
+const UserList = lazy(() => import("@/features/user/routes/user-list"));
+const OrderList = lazy(() => import("@/features/order/routes/order-list"));
 
 const ErrorFallBack: React.FC<ErrorFallbackProps> = ({ error }) => {
   return <ErrorMessage message={error.message} />;
@@ -52,7 +54,9 @@ const AuthenticatedRoutes = () => {
       <Route path="/product/create" element={<CreateProduct />} />
 
       <Route path="/invoice/list" element={<InvoiceList />} />
+      <Route path="/order/list" element={<OrderList />} />
 
+      <Route path="/user/list" element={<UserList />} />
       <Route path="/account" element={<Account />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

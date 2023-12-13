@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Sidebar: React.FC = () => {
   return (
     <nav id="sidebar" className="">
-      <div className="lg:w-[300px] lg:block fixed  top-0 hidden h-screen w-[200px] shrink-0 bg-neutral-50  text-slate-600">
+      <div className="fixed top-0 hidden  h-screen w-[200px] shrink-0 border-r border-slate-200 shadow-sm lg:block lg:w-[300px]">
         <div className="flex h-full flex-col justify-between">
           <div className="">
             <div className="ml-3 flex items-center gap-1 p-5">

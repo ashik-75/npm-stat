@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
-import TopSection from "../../../../components/ui/top-section";
-import { DataTable } from "@/components/date-table";
-import { columns } from "./table-info/column";
-import { productListData } from "./table-info/data";
+import TopSection from "@/components/ui/top-section";
+import ProductListTable from "./table-info";
 
 const ProductList: React.FC = () => {
   return (
@@ -29,7 +27,7 @@ const ProductList: React.FC = () => {
         <Button color="">Add Product</Button>
       </div>
 
-      <DataTable field="title" columns={columns} data={productListData} />
+      <ProductListTable />
     </div>
   );
 };

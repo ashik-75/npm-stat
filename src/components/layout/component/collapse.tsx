@@ -19,6 +19,10 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
     location.pathname.includes(item.url),
   );
 
+  const active = location.pathname.includes(item.url);
+
+  console.log(location.pathname, item.url);
+
   return (
     <Collapsible
       open={isOpen}
@@ -28,13 +32,17 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
       <CollapsibleTrigger
         asChild
         className={clsx(
-          "flex cursor-pointer items-center gap-2 rounded border border-transparent px-4 py-2 font-semibold hover:border-zinc-200 hover:bg-white",
+          "flex items-center gap-2 rounded border border-transparent px-4 py-2 font-semibold  ",
+          {
+            "bg-green-300/10 text-green-500 hover:bg-green-300/20": active,
+            "hover:bg-zinc-100": !active,
+          },
         )}
       >
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full cursor-pointer items-center justify-between">
           <div className="flex items-center gap-2">
             <Icon name={item?.icon || "Activity"} size={20} />
-            <span className="block  capitalize">{item.title}</span>
+            <span className="block capitalize">{item.title}</span>
           </div>
           <Icon
             className="transition-all duration-200"
@@ -43,24 +51,31 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
         </div>
       </CollapsibleTrigger>
 
-      <CollapsibleContent className="space-y-2">
+      <CollapsibleContent>
         {item.children?.map((sub) => (
           <NavLink
             key={sub.url}
             to={sub.url}
-            className={({ isActive }) =>
-              clsx(
-                "flex items-center gap-2 rounded border border-transparent px-11 py-2 hover:border-zinc-200 hover:bg-white",
-                {
-                  "border-zinc-200 bg-white": isActive,
-                },
-              )
-            }
+            className={clsx(
+              "flex list-disc items-center gap-4 rounded border border-transparent px-6 py-2  hover:bg-zinc-100 ",
+            )}
             onClick={() => {
               onOpenChange && onOpenChange();
             }}
           >
-            <span className="font-semibold">{sub.title}</span>
+            <span
+              className={clsx("h-1.5 w-1.5 rounded-full", {
+                " bg-green-400": location.pathname === sub.url,
+                " bg-slate-400": !(location.pathname === sub.url),
+              })}
+            ></span>
+            <span
+              className={clsx("text-zinc-500", {
+                " font-medium text-zinc-900": location.pathname === sub.url,
+              })}
+            >
+              {sub.title}
+            </span>
           </NavLink>
         ))}
       </CollapsibleContent>

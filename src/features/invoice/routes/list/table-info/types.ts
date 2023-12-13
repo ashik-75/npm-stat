@@ -1,5 +1,7 @@
+import { Customer } from "@/features/user/routes/user-list/table-info/types";
+
 export type Invoice = {
-  title: string;
+  customer: Customer;
   invoiceId: string;
   quantity: number;
   createdAt: string;

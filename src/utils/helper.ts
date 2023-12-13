@@ -14,6 +14,9 @@ export const movieDuration = (duration: number) => {
   return `${hour} h ${minutes}m ${seconds}s`;
 };
 
+export const formatPrice = (number: number) =>
+  `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
+
 export const formatDateAndTime = (date: string) => {
   const dateObject = new Date(date);
 

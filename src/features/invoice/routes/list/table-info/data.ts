@@ -1,26 +1,29 @@
 import { Invoice } from "./types";
+import { faker } from "@faker-js/faker";
 
-const generateRandomInvoice = (id: number): Invoice => ({
-  title: `Invoice ${id}`,
-  invoiceId: `INV-${id.toString().padStart(3, "0")}`,
-  quantity: Math.floor(Math.random() * 10) + 1, // Random quantity between 1 and 10
-  createdAt: new Date().toISOString(),
-  due: new Date(
-    Date.now() + Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000,
-  ).toISOString(), // Random due date within 30 days
-  price: (Math.random() * 1000).toFixed(2), // Random price with 2 decimal places
-  status: id % 3 === 0 ? "overdue" : id % 2 === 0 ? "paid" : "pending", // Alternating between "pending," "paid," and "overdue"
+const generateRandomOrder = (): Invoice => ({
+  invoiceId: faker.datatype.string(5),
+  customer: {
+    name: faker.person.fullName(),
+    image: faker.image.avatar(),
+    email: faker.internet.email(),
+  },
+  createdAt: faker.date.recent().toISOString(),
+  due: faker.date.recent().toISOString(),
+  quantity: faker.number.int(100),
+  price: faker.commerce.price(),
+  status: faker.helpers.arrayElement(["pending", "paid", "overdue"]),
 });
 
-const generateArrayOfInvoices = (num: number): Invoice[] => {
-  const invoices = [];
-  for (let i = 1; i <= num; i++) {
-    invoices.push(generateRandomInvoice(i));
+const generateInvoice = (count: number): Invoice[] => {
+  const orders: Invoice[] = [];
+  for (let i = 0; i < count; i++) {
+    orders.push(generateRandomOrder());
   }
-  return invoices;
+  return orders;
 };
 
-export const invoiceData = generateArrayOfInvoices(100);
+export const InvoiceListData: Invoice[] = generateInvoice(50);
 
 export const InvoiceStatus = [
   {

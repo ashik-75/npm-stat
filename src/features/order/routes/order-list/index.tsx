@@ -1,20 +1,20 @@
 import TopSection from "@/components/ui/top-section";
 import React from "react";
-import InvoiceTable from "./table-info/invoice-table";
+import OrderListTable from "./table-info";
 
-const InvoiceList: React.FC = () => {
+const OrderList: React.FC = () => {
   return (
     <div className="space-y-5">
       <TopSection
-        title="Invoice List"
+        title="List"
         links={[
           {
             title: "Dashboard",
             href: "/dashboard",
           },
           {
-            title: "Invoice",
-            href: "/invoice",
+            title: "User",
+            href: "/user",
           },
           {
             title: "List",
@@ -22,9 +22,9 @@ const InvoiceList: React.FC = () => {
         ]}
       />
 
-      <InvoiceTable />
+      <OrderListTable />
     </div>
   );
 };
 
-export default InvoiceList;
+export default OrderList;

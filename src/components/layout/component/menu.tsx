@@ -16,9 +16,10 @@ const Menu: React.FC<MenuProps> = ({ item, onOpenChange }) => {
       to={item.url}
       className={({ isActive }) =>
         clsx(
-          "flex items-center gap-2 rounded border border-transparent px-4 py-2 font-semibold hover:border-zinc-200 hover:bg-white",
+          "flex items-center gap-2 rounded border border-transparent px-4 py-2 font-semibold  ",
           {
-            "border-zinc-200 bg-white": isActive,
+            "bg-green-300/10 text-green-500 hover:bg-green-300/20": isActive,
+            "hover:bg-zinc-100": !isActive,
           },
         )
       }
