@@ -15,9 +15,7 @@ const Dashboard = lazy(() => import("@/features/dashboard/routes/dashboard"));
 const ProductList = lazy(
   () => import("@/features/products/routes/product-list"),
 );
-const ProductDetails = lazy(
-  () => import("@/features/products/routes/product-details"),
-);
+const ProductDetails = lazy(() => import("@/features/products/routes/details"));
 const CreateProduct = lazy(
   () => import("@/features/products/routes/create-product"),
 );

@@ -21,8 +21,6 @@ export const CollapsibleDemo: React.FC<MenuProps> = ({
 
   const active = location.pathname.includes(item.url);
 
-  console.log(location.pathname, item.url);
-
   return (
     <Collapsible
       open={isOpen}

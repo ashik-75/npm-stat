@@ -37,15 +37,15 @@ export const docsConfig: DocsConfig = {
           url: "/product",
         },
         {
+          title: "Details",
+          url: "/product/87238238",
+        },
+        {
           title: "Create",
           url: "/product/create",
         },
         {
-          title: "Delete",
-          url: "/product/delete",
-        },
-        {
-          title: "Update",
+          title: "Edit",
           url: "/product/update",
         },
       ],
