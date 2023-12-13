@@ -1,4 +1,4 @@
-import { Customer } from "@/features/user/routes/user-list/table-info/types";
+import { Customer } from "@/features/order/routes/order-list/table-info/types";
 
 export type Invoice = {
   customer: Customer;
