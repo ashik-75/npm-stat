@@ -10,11 +10,12 @@ interface IconProps {
   color?: string;
   className?: string;
   strokeWidth?: string;
+  onClick: () => void;
 }
 
-const Icon: React.FC<IconProps> = ({ size = 18, className, name }) => {
+const Icon: React.FC<IconProps> = ({ size = 18, className, name, onClick }) => {
   const LucideIcon = icons[name];
-  return <LucideIcon className={cn(className)} size={size} />;
+  return <LucideIcon onClick={onClick} className={cn(className)} size={size} />;
 };
 
 export default Icon;

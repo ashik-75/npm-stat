@@ -1,9 +1,9 @@
 import React, { lazy } from "react";
 
-const AuthenticatedApp = lazy(() => import("./authenticated-app"));
+const Routes = lazy(() => import("./routes"));
 
 const AppRoutes: React.FC = () => {
-  return <AuthenticatedApp />;
+  return <Routes />;
 };
 
 export default AppRoutes;
