@@ -1,7 +1,7 @@
 const api_url = import.meta.env.VITE_API_URL;
 const proxy = import.meta.env.DEV ? `https://cors-anywhere.herokuapp.com/` : "";
 
-// console.log(import.meta.env.MODE);
+console.log(import.meta.env.MODE);
 
 interface ClientOptions {
   data?: Record<string, string>;
