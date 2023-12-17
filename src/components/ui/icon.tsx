@@ -10,7 +10,7 @@ interface IconProps {
   color?: string;
   className?: string;
   strokeWidth?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Icon: React.FC<IconProps> = ({ size = 18, className, name, onClick }) => {
