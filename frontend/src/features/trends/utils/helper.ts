@@ -1,11 +1,9 @@
-import { NpmDownload } from "@/features/trends/types";
+import { ChartEntry, NpmDownload } from "@/features/trends/types";
 import { format, subMonths } from "date-fns";
 
-export const formatDataForChart = (
-  list: NpmDownload[],
-): { date: string; [key: string]: number | string }[] => {
-  return list?.reduce((result, packageData) => {
-    const packageName = packageData?.package;
+export const formatDataForChart = (list: NpmDownload[]): ChartEntry[] => {
+  return list?.reduce((result: ChartEntry[], packageData) => {
+    const packageName = packageData?.package as string;
     packageData?.downloads.forEach(({ downloads, day }) => {
       const existingEntry = result.find((entry) => entry.date === day);
       if (existingEntry) {

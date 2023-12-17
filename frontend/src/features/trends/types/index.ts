@@ -26,3 +26,9 @@ export type NpmDownload = {
   package: string;
   downloads: Download[];
 };
+
+
+export type ChartEntry = {
+  date: string;
+  [key: string]: number | string;
+};
