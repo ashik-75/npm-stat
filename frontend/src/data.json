@@ -1,0 +1,13 @@
+[
+	{ "name": "Image 1", "url": "image-1.webp" },
+	{ "name": "Image 2", "url": "image-2.webp" },
+	{ "name": "Image 3", "url": "image-3.webp" },
+	{ "name": "Image 4", "url": "image-4.webp" },
+	{ "name": "Image 5", "url": "image-5.webp" },
+	{ "name": "Image 6", "url": "image-6.webp" },
+	{ "name": "Image 7", "url": "image-7.webp" },
+	{ "name": "Image 8", "url": "image-8.webp" },
+	{ "name": "Image 9", "url": "image-9.webp" },
+	{ "name": "Image 10", "url": "image-10.jpeg" },
+	{ "name": "Image 11", "url": "image-11.jpeg" }
+]
