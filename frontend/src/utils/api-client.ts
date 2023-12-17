@@ -1,4 +1,7 @@
 const api_url = import.meta.env.VITE_API_URL;
+const proxy = import.meta.env.DEV ? `https://cors-anywhere.herokuapp.com/` : "";
+
+// console.log(import.meta.env.MODE);
 
 interface ClientOptions {
   data?: Record<string, string>;
@@ -7,7 +10,7 @@ interface ClientOptions {
   root?: string;
 }
 
-const client = (
+const client = async (
   endpoint: string,
   {
     data,
@@ -31,19 +34,15 @@ const client = (
     ...customConfig,
   };
 
-  return window
-    .fetch(
-      `https://cors-anywhere.herokuapp.com/${root ?? api_url}/${endpoint}`,
-      config,
-    )
-    .then(async (response) => {
-      const data = await response.json();
-      if (response.ok) {
-        return data;
-      } else {
-        return Promise.reject(data);
-      }
-    });
+  const url = root ? `${root}/${endpoint}` : `${api_url}/${endpoint}`;
+  const response = await fetch(`${proxy}${url}`, config);
+
+  if (response.ok) {
+    return response.json();
+  } else {
+    const errorData = await response.json();
+    return Promise.reject(errorData);
+  }
 };
 
 export { client };
